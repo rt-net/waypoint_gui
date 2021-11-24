@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="yaml_file" default="$(find waypoint_gui)/config/waypoint_gui.yaml" />
+  <arg name="rviz" default="true" />
+  <arg name="addpose_topic" default="/initialpose"/>
+  <arg name="posearray_topic" default="/waypoints"/>
+
+  <rosparam command="load" file="$(arg yaml_file)"/>
+
+  <node pkg="waypoint_gui" type="marker_publisher.py" name="marker_publisher" output="screen"/>
+
+  <node pkg="waypoint_gui" type="follow_waypoints.py" name="follow_waypoints" output="screen">
+     <param name="goal_frame_id" value="map"/>
+     <param name="addpose_topic" value="$(arg addpose_topic)"/>
+     <param name="posearray_topic" value="$(arg posearray_topic)"/>
+     <param name="wait_duration" value="0.5"/>
+     <param name="waypoint_distance_tolerance" value="0.0"/>
+  </node>
+
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find waypoint_gui)/rviz/waypoint_gui.rviz" if="$(arg rviz)" />
+</launch>

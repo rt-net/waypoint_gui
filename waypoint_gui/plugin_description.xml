@@ -1,0 +1,7 @@
+<library path="lib/libwaypoint_gui">
+  <class name = "rviz_plugin/WaypointGui"
+         type="rviz_plugin::WaypointGui"
+         base_class_type="rviz::Panel">
+    <description>WaypointGui</description>
+  </class>
+</library>
