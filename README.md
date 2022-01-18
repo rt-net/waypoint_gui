@@ -36,11 +36,13 @@ source ~/catkin_ws/devel/setup.bash
 
 - 以下のコマンドで必要なノードを起動できます
     - `waypoint_gui.launch`はRVizと本ツールを起動します
+        - 使用するナビゲーションによって、RViz上で表示するものが異なります。
+        - 本パッケージでは、`neonavigation`の場合と`move_base`の場合の2種類のRVizファイルを用意しています。  
     - `simulate_path.launch`はナビゲーション時のパスをシミュレーションするためのノードを起動します
         - ナビゲーションに用いる手法を変更する場合はこのlaunchファイルを編集・置き換えます
 
 ```bash
-roslaunch waypoint_gui waypoint_gui.launch 
+roslaunch waypoint_gui waypoint_gui.launch localization:=$NAV_METHOD
 roslaunch waypoint_neonavigation simulate_path.launch 
 ```
 ### 操作方法
