@@ -4,6 +4,7 @@
   <arg name="rviz" default="true" />
   <arg name="addpose_topic" default="/initialpose"/>
   <arg name="posearray_topic" default="/waypoints"/>
+  <arg name="localization" default="neonavigation"/>
 
   <rosparam command="load" file="$(arg yaml_file)"/>
 
@@ -17,5 +18,5 @@
      <param name="waypoint_distance_tolerance" value="0.0"/>
   </node>
 
-  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find waypoint_gui)/rviz/waypoint_gui.rviz" if="$(arg rviz)" />
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find waypoint_gui)/rviz/waypoint_gui_$(arg localization).rviz" if="$(arg rviz)" />
 </launch>
